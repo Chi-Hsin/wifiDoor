@@ -13,7 +13,7 @@ var indexData = new Vue({
             	},
             	obj:{},
             	memberName:"",
-            	memberNumber:"",
+            	latestAccessNumber:"",
             	modeList:{
             		1:'Wifi',
             		2:'RFID',
@@ -52,7 +52,26 @@ var indexData = new Vue({
                               time:this.currentTime
             		})
             		fireRoot.update({'doorMode':this.obj.doorMode})
-            	}
+            	},
+              setAuthMember:function(){//更新/編輯
+                var obj = {};
+                obj[this.latestAccessNumber] = this.memberName; //更新雲端資料庫的值
+
+                console.log("要更新的卡號是",this.latestAccessNumber,"要更新的名稱是",this.memberName)
+                this.$set(this.obj.memberList, this.latestAccessNumber, this.memberName) //同時更新本地端的資料
+                fireRoot.child("memberList").update(obj);
+              },
+              delAuthMember:function(){//移除權限
+                fireRoot.child("memberList/" + this.latestAccessNumber).remove();
+                this.$delete(this.obj.memberList,this.latestAccessNumber)
+              },
+              getDataTest:function(e){
+                var name = e.target.getAttribute("data-name")
+                var number = e.target.getAttribute("data-number")
+                this.memberName = name;
+                this.latestAccessNumber = number;
+                // console.log(data)
+              },
             },
             computed:{
                   doorMode:function(){
@@ -109,6 +128,7 @@ var indexData = new Vue({
 
             fireRoot.child("latestAccessNumber").on("value",function(s){
                console.log("紀錄上一次登入變動",s.val())
+               indexData.latestAccessNumber = s.val()
             })
 
           },

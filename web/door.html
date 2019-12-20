@@ -34,9 +34,28 @@
           <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
           
           <p>寫入測試測試</p>
-          <input type="text" name="memberNumber" placeholder="最新登入卡號">
-          <input type="text" name="memberName" placeholder="輸入名稱">
-          <button type="button">設置權限</button>
+          <div class="modal-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>卡號</th>
+                    <th>名稱</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(v,k) in obj.memberList" @click="getDataTest">
+                   <td :data-number="k" :data-name="v">{{k}}</td>
+                   <td :data-number="k" :data-name="v">{{v}}</td>
+                </tr>
+                </tbody>
+            </table>
+           </div>
+
+
+          <input type="text" name="latestAccessNumber" placeholder="最新登入卡號" v-model="latestAccessNumber">
+          <input type="text" name="memberName" placeholder="輸入名稱" v-model="memberName">
+          <button type="button" @click="setAuthMember">編輯修改</button>
+          <button type="button" @click="delAuthMember">移除權限</button>
         </div>
 
       </div>
