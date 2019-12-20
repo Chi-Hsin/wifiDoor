@@ -1,0 +1,17 @@
+{
+  "iot" : {
+    "colder" : {
+      "closeTime" : "2019-12-31T12:59",
+      "setTime" : "2019-12-15T23:16"
+    },
+    "currentTime" : "2019-12-16T11:44",
+    "door" : {
+      "doorMode" : 3,
+      "reset" : 0,
+      "resetIo" : 0,
+      "start" : 0,
+      "startIo" : 0
+    },
+    "randomNumber" : 1
+  }
+}

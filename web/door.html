@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>門禁鎖控制</title>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<body>
+<div class="container-fluid" id="doorLock">
+      <div class="row">
+  		<!-- Rfid掃描紀錄顯示 -->
+  	    <div class="col-sm-6" id="rfidConsole" :style="rfidConsoleStyle" v-html="message"></div>
+        <div class="col-sm-6" :style="memberListStyle">123</div>
+        <div class="col-sm-12">
+          目前門鎖模式為{{modeList[doorMode]}}
+          <p>切換門鎖模式
+                <select @change="doorModeEvent" v-model="doorMode">
+                  <option v-for="(v,k) in modeList" :value ="k">{{v}}</option>
+                </select>
+          </p>
+          <button type="button" class="startButton" @click="startEvent">開關切換</button>
+          <button type="button" class="resetButton" @click="resetEvent">重置</button>
+          <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
+          
+          <p>寫入測試測試</p>
+          <input type="text" name="memberNumber" placeholder="最新登入卡號">
+          <input type="text" name="memberName" placeholder="輸入名稱">
+          <button type="button">設置權限</button>
+        </div>
+
+      </div>
+
+
+
+
+
+  <!-- Modal Begin-->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title">歷史紀錄</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>時間</th>
+                    <th>訊息</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(v,k) in history">
+                   <td>{{v.time}}</td>
+                   <td v-html="v.msg"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+</div>      
+
+</body>
+<script src="js/door.js"></script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IOT物聯網應用技術</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+
+
+</style>
+<body>
+	<div><a href="index.html">回首頁</a></div>
+	<div id="colderData">
+		<h1>喇叭排程頁面</h1>
+        <p>打開的時間</p>
+		<input type="datetime-local" name="" v-model="setTimeValue">
+        <button @click="setTime">設置</button>
+        <p>關閉的時間</p>
+        <input type="datetime-local" name="" v-model="closeTimeValue">
+        <button @click="closeTime">設置</button>
+
+
+        <p>每天固定時間開啟</p>
+        <input type="time" name="">
+        <button>設置</button>
+
+	</div>
+</body>
+<script type="text/javascript">
+	var colderData = new Vue({
+            el: '#colderData',
+            data: {
+            	setTimeValue:"",
+                closeTimeValue:"",
+                obj:{},
+            },
+            methods:{
+            	setTime:function(){
+                    if(this.setTimeValue != ""){
+                        fireRoot.update({'setTime':this.setTimeValue})
+                    }else{
+                        console.log("時間缺少")
+                    }
+                },
+                closeTime:function(){
+                    if(this.closeTimeValue != ""){
+                        fireRoot.update({'closeTime':this.closeTimeValue})
+                    }else{
+                        console.log("時間缺少")
+                    }
+                },
+            },
+             mounted:function(){
+                var config = {
+                  apiKey: "AIzaSyCZwmZKUPTIdTntjUvnvPqj5qEVy1pZG3Q",
+                  authDomain: "relaycontrol-fc8da.firebaseapp.com",
+                  databaseURL: "https://wifi-door.firebaseio.com/",
+                  projectId: "wifi-door",
+                  storageBucket: "",
+                  messagingSenderId: "690750323149"};
+                
+                firebase.initializeApp(config);// Initialize Firebase
+                fireRoot = firebase.database().ref("/iot/colder");
+
+                fireRoot.once("value").then(function(x){
+                    colderData.obj = x.val();
+                    colderData.setTimeValue = colderData.obj.setTime;
+                    colderData.closeTimeValue = colderData.obj.closeTime;
+                })
+
+            },
+        })
+</script>
+</html>
