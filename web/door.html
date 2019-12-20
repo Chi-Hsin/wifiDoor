@@ -17,12 +17,15 @@
 
 
 <body>
-<div class="container-fluid" id="doorLock">
-      <div class="row">
+<div class="container-fluid" id="doorLock" >
+	  <div>
+	  	<a href="javascript:;" @click="rfidrecordShow">RFID紀錄</a>
+	  	<a href="javascript:;" @click="settingShow">設置頁面</a>
+	  </div>
+      <div class="row" v-show="rfidrecordVisible">
   		<!-- Rfid掃描紀錄顯示 -->
-  	    <div class="col-sm-6" id="rfidConsole" :style="rfidConsoleStyle" v-html="message"></div>
-        <div class="col-sm-6" :style="memberListStyle">123</div>
-        <div class="col-sm-12">
+  	    <div class="col-sm-12" id="rfidConsole" :style="rfidConsoleStyle" v-html="message" ></div>
+  	    <div class="col-sm-12">
           目前門鎖模式為{{modeList[doorMode]}}
           <p>切換門鎖模式
                 <select @change="doorModeEvent" v-model="doorMode">
@@ -32,33 +35,44 @@
           <button type="button" class="startButton" @click="startEvent">開關切換</button>
           <button type="button" class="resetButton" @click="resetEvent">重置</button>
           <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
-          
-          <p>寫入測試測試</p>
-          <div class="modal-body">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th>卡號</th>
-                    <th>名稱</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(v,k) in obj.memberList" @click="getDataTest">
-                   <td :data-number="k" :data-name="v">{{k}}</td>
-                   <td :data-number="k" :data-name="v">{{v}}</td>
-                </tr>
-                </tbody>
-            </table>
-           </div>
-
-
-          <input type="text" name="latestAccessNumber" placeholder="最新登入卡號" v-model="latestAccessNumber">
-          <input type="text" name="memberName" placeholder="輸入名稱" v-model="memberName">
-          <button type="button" @click="setAuthMember">編輯修改</button>
-          <button type="button" @click="delAuthMember">移除權限</button>
         </div>
+	  </div>
+  	    <!-- 設置頁面 -->
+  	   <div class="row" v-show="settingVisible">
+  	   	    <div class="col-sm-12" :style="memberListStyle" >
+        	<p>寫入測試測試</p>
+	          <div class="modal-body">
+	            <table class="table table-hover">
+	                <thead>
+	                  <tr>
+	                    <th>卡號</th>
+	                    <th>名稱</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                <tr v-for="(v,k) in obj.memberList" @click="getDataTest">
+	                   <td :data-number="k" :data-name="v">{{k}}</td>
+	                   <td :data-number="k" :data-name="v">{{v}}</td>
+	                </tr>
+	                </tbody>
+	            </table>
+	           </div>
 
-      </div>
+
+	          <input type="text" name="latestAccessNumber" placeholder="最新登入卡號" v-model="latestAccessNumber">
+	          <input type="text" name="memberName" placeholder="輸入名稱" v-model="memberName">
+	          <button type="button" @click="setAuthMember">編輯修改</button>
+	          <button type="button" @click="delAuthMember">移除權限</button>
+	          <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
+        	</div>
+  	   </div> 
+
+        
+          
+          
+        
+
+      
 
 
 

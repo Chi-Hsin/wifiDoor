@@ -9,7 +9,6 @@ var indexData = new Vue({
             	memberListStyle:{
             		background: '#fff',
             		height:'300px',
-            		border:'1px solid #000'
             	},
             	obj:{},
             	memberName:"",
@@ -19,8 +18,11 @@ var indexData = new Vue({
             		2:'RFID',
             		3:'Key',
             	},
-            	message:"~~~~~",
-                  currentTime:"",
+            	message:"~~~~~",//rfid掃描紀錄顯示
+              recordMessage:"",
+              currentTime:"",
+              rfidrecordVisible:true,
+              settingVisible:false,
             },
             methods:{
             	startEvent:function(){
@@ -46,18 +48,24 @@ var indexData = new Vue({
             	doorModeEvent:function(e){
             		// alert(e.target.value)
             		this.obj.doorMode = Number(e.target.value);
-            		fireRoot.child("message").push({
-            			type:'txt',
-            			msg:"<br>門鎖模式變更為"+this.modeList[this.obj.doorMode] + "</br>",
-                              time:this.currentTime
-            		})
+                this.recordMessage = "<br>門鎖模式變更為"+this.modeList[this.obj.doorMode] + "</br>";
+            		this.messageRecordDB();
             		fireRoot.update({'doorMode':this.obj.doorMode})
             	},
+              messageRecordDB:function(){
+                fireRoot.child("message").push({
+                  type:'txt',
+                  msg:this.recordMessage,
+                  time:this.currentTime
+                })
+              },
               setAuthMember:function(){//更新/編輯
                 var obj = {};
                 obj[this.latestAccessNumber] = this.memberName; //更新雲端資料庫的值
 
-                console.log("要更新的卡號是",this.latestAccessNumber,"要更新的名稱是",this.memberName)
+                // console.log("要更新的卡號是",this.latestAccessNumber,"要更新的名稱是",this.memberName)
+                this.recordMessage = "更新名稱卡號";
+                this.messageRecordDB();
                 this.$set(this.obj.memberList, this.latestAccessNumber, this.memberName) //同時更新本地端的資料
                 fireRoot.child("memberList").update(obj);
               },
@@ -71,6 +79,14 @@ var indexData = new Vue({
                 this.memberName = name;
                 this.latestAccessNumber = number;
                 // console.log(data)
+              },
+              rfidrecordShow:function(){
+                this.rfidrecordVisible = true;
+                this.settingVisible = false;
+              },
+              settingShow:function(){
+                this.rfidrecordVisible = false;
+                this.settingVisible = true;
               },
             },
             computed:{
