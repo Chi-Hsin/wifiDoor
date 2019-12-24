@@ -88,6 +88,16 @@ var indexData = new Vue({
                 this.rfidrecordVisible = false;
                 this.settingVisible = true;
               },
+              getCurrentTime:function(){
+                var time = new Date();
+                var year = time.getFullYear();
+                var month  = time.getMonth()+1;
+                var day = time.getDate();
+                var minute = time.getMinutes();
+                var hour = time.getHours();
+                var msg = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+                return msg;
+              },
             },
             computed:{
                   doorMode:function(){
@@ -131,9 +141,10 @@ var indexData = new Vue({
 					for(i in s.val())
 					{
 					      indexData.message = s.val()[i].msg + indexData.message;
-                                    fireRoot.child("currentTime").once("value").then(function(x){
-                                          indexData.currentTime = x.val();
-                                    })
+                                    // fireRoot.child("currentTime").once("value").then(function(x){
+                                    //       indexData.currentTime = x.val();
+                                    // })
+                                    indexData.currentTime = indexData.getCurrentTime();
                                     var aaa = {};
                                     aaa[i] = s.val()[i];
                                     var newobj = Object.assign(indexData.obj.message,aaa);

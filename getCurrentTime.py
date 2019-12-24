@@ -2,14 +2,14 @@
 
 
 
-import ntptime,time
+import myntptime,time
 from machine import RTC
 rtc=None
 def localRTC():
   global rtc
   rtc=RTC()
   try:
-    ticks=ntptime.time()+28800   #網路Timer取得格林威治時間+8Hours時差=28800Seconds
+    ticks=myntptime.time()+28800   #網路Timer取得格林威治時間+8Hours時差=28800Seconds
     dt=time.localtime(ticks)
     rtc.datetime(dt[0:3]+(0,)+dt[3:6]+(0,)) #將取得時間轉入更新RTC 時間
     return rtc
@@ -24,6 +24,7 @@ def now():
   
   
  #下now()可取得現在時間
+
 
 
 
