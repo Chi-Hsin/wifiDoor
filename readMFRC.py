@@ -11,6 +11,8 @@
 
 
 
+
+
 import mfrc522
 from os import uname
 import time,machine
@@ -22,10 +24,11 @@ def resetMode():
   time.sleep_ms(500)
   
 def door():
+  delayTime = 3000 #開和關之間暫停的時間
   pinRelpay = Pin(5,1)#5 is Relpay NO/NO Pin
   pinRelpay.value(1)
   print("RelayHigh")
-  time.sleep_ms(1000)
+  time.sleep_ms(delayTime)
   pinRelpay.value(0)
   print("RelayLow")
   time.sleep_ms(100)
@@ -125,6 +128,9 @@ def do_read():
 
  except KeyboardInterrupt:
   print("Bye")
+
+
+
 
 
 
