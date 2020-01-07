@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 import net
 from uFirebase import uFirebase
 from machine import Pin
@@ -44,7 +32,7 @@ while True:
   formatTime = getCurrentTime.now()
   print(formatTime)
   
-  if dataMode == 1:
+  if dataMode == 1 or dataMode == 3:
     print("RemoteMode")
     datastart = fire.get("iot/door/start")
     dataReset = fire.get("iot/door/reset")
@@ -56,7 +44,7 @@ while True:
       resetMode()
       
     
-  elif dataMode == 2:
+  if dataMode == 2 or dataMode == 3:
     print("RfidMode")
     memberList = fire.get("iot/door/memberList")
     (condition,content) = rfidMode(memberList,rdr)#卡號是否正確
@@ -74,12 +62,5 @@ while True:
       print("XXXXXX")
       fire.post("iot/door/message",{'type':'text','msg':'<br>Card Error!</br>','time':formatTime})
       fire.put("iot/door/latestAccessNumber",content)
-  elif dataMode == 3:
-    print("MixMode")
-
-
-
-
-
 
 
