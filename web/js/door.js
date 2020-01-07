@@ -14,9 +14,9 @@ var indexData = new Vue({
             	memberName:"",
             	latestAccessNumber:"",
             	modeList:{
-            		1:'Wifi',
+            		1:'Remote',
             		2:'RFID',
-            		3:'Key',
+                3:'Mix'
             	},
             	message:"~~~~~",//rfid掃描紀錄顯示
               recordMessage:"",

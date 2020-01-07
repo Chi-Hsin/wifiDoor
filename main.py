@@ -45,11 +45,12 @@ while True:
   print(formatTime)
   
   if dataMode == 1:
-    print("doorMode1")
+    print("RemoteMode")
     datastart = fire.get("iot/door/start")
     dataReset = fire.get("iot/door/reset")
     if datastart == 1:
       door()
+      fire.patch("iot/door/",{'start':0})
     if dataReset == 1:
       fire.patch("iot/door/",{'reset':0})
       resetMode()
@@ -74,7 +75,7 @@ while True:
       fire.post("iot/door/message",{'type':'text','msg':'<br>Card Error!</br>','time':formatTime})
       fire.put("iot/door/latestAccessNumber",content)
   elif dataMode == 3:
-    print("keyMode")
+    print("MixMode")
 
 
 
