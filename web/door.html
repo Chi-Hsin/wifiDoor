@@ -32,7 +32,7 @@
                   <option v-for="(v,k) in modeList" :value ="k">{{v}}</option>
                 </select>
           </p>
-          <button type="button" class="startButton" @click="startEvent">開關切換</button>
+          <button type="button" class="startButton" @click="startEvent" v-show="remoteOn">啟動門鎖</button>
           <button type="button" class="resetButton" @click="resetEvent">重置</button>
           <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
         </div>

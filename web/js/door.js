@@ -23,6 +23,7 @@ var indexData = new Vue({
               currentTime:"",
               rfidrecordVisible:true,
               settingVisible:false,
+              remoteOn:true,
             },
             methods:{
             	startEvent:function(){
@@ -46,8 +47,12 @@ var indexData = new Vue({
             		console.log(this.obj.reset)
             	},
             	doorModeEvent:function(e){
-            		// alert(e.target.value)
             		this.obj.doorMode = Number(e.target.value);
+                if(this.obj.doorMode == 2 || this.obj.doorMode == 3){
+                  this.remoteOn = false;
+                }else{
+                  this.remoteOn = true;
+                }
                 this.recordMessage = "<br>門鎖模式變更為"+this.modeList[this.obj.doorMode] + "</br>";
             		this.messageRecordDB();
             		fireRoot.update({'doorMode':this.obj.doorMode})
