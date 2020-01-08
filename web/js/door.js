@@ -16,7 +16,8 @@ var indexData = new Vue({
             	modeList:{
             		1:'Remote',
             		2:'RFID',
-                3:'Mix'
+                3:'Mix',
+                4:'XXX'
             	},
             	message:"~~~~~",//rfid掃描紀錄顯示
               recordMessage:"",
