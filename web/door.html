@@ -119,5 +119,13 @@
 </div>      
 
 </body>
-<script src="js/door.js"></script>
+<script>
+  window.onload = function(){
+    var s = document.createElement("script");//引入設置相關的JS文件
+    var random_number = Math.floor((Math.random() * 10000) + 1);
+    s.src = "js/door.js?number="+random_number;
+    document.body.appendChild(s);
+  }
+</script>
+<!-- <script src="js/door.js"></script> -->
 </html>
