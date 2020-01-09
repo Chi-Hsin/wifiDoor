@@ -2,7 +2,7 @@ import net
 from uFirebase import uFirebase
 from machine import Pin
 import getCurrentTime
-import mfrc522
+import mfrc522,time
 from  readMFRC import door,rfidMode,resetMode
 
 
@@ -56,11 +56,11 @@ while True:
       print("OOOO")
       door()
       fire.patch("iot/door/",{'start':0,'startIo':1})
-      fire.post("iot/door/message",{'type':'text','msg':'<br>'+accessName+'Card Access!</br>','time':formatTime})
+      fire.post("iot/door/message",{'type':'text','msg':'<br>'+accessName+'Access success!</br>','time':formatTime})
       fire.put("iot/door/latestAccessNumber",content)
     elif condition == False and content != "":
       print("XXXXXX")
-      fire.post("iot/door/message",{'type':'text','msg':'<br>Card Error!</br>','time':formatTime})
+      fire.post("iot/door/message",{'type':'text','msg':'<br>Access fault! Detect unknown Card</br>','time':formatTime})
       fire.put("iot/door/latestAccessNumber",content)
 
 

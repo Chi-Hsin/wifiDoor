@@ -24,7 +24,8 @@ var indexData = new Vue({
                 2:"修改卡號",//修改成功
                 3:"新增卡號",//新增成功
                 4:"移除卡號",//刪除成功
-                5:"查無卡號"//刪除失敗
+                5:"查無卡號",//刪除失敗
+                6:"遠端啟動門鎖成功"
               },
             	message:"~~~~~",//rfid掃描紀錄顯示
               recordMessage:"",
@@ -35,13 +36,11 @@ var indexData = new Vue({
             },
             methods:{
             	startEvent:function(){
-            		this.obj.start = 1 - this.obj.start;
-            		fireRoot.update({'start':this.obj.start})
-            		fireRoot.child("message").push({
-            			type:'txt',
-            			msg:"<br>開關狀態變更為"+this.obj.start + "</br>",
-                              time:this.currentTime
-            		})
+            		// this.obj.start = 1 - this.obj.start;
+            		// fireRoot.update({'start':this.obj.start})
+                fireRoot.update({'start':1})
+                this.recordMessage = "<br>" + this.buttonActionList[6] + "</br>";
+                this.messageRecordDB();
             	
             	},
             	resetEvent:function(){
@@ -119,15 +118,15 @@ var indexData = new Vue({
                 var confirmValue = this.editbuttonConfirm("確認要修改嗎?",this.latestAccessNumber);
 
                 if(confirmValue == 0 || confirmValue == 1){
-                  this.recordMessage = this.buttonActionList[confirmValue];
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + "</br>";
                   this.messageRecordDB();
                   return;//紀錄訊息  以及下方更新動作都不做
                 }
                 else if(confirmValue == 2){
-                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料";
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料</br>";
                 }
                 else if(confirmValue == 3){
-                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "一筆";
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + this.latestAccessNumber + "一筆</br>";
                 }
 
                 var obj = {};
@@ -144,15 +143,15 @@ var indexData = new Vue({
                 var confirmValue = this.delbuttonConfirm("確認移除該使用者權限嗎?",this.latestAccessNumber);
 
                 if(confirmValue == 0 || confirmValue == 1){
-                  this.recordMessage = this.buttonActionList[confirmValue];
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + "</br>";
                   this.messageRecordDB();
                   return;//紀錄訊息  以及下方刪除動作都不做
                 }
                 else if(confirmValue == 4){
-                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料成功";
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料成功</br>";
                 }
                 else if(confirmValue == 5){
-                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + ",移除失敗";
+                  this.recordMessage = "<br>" + this.buttonActionList[confirmValue] + this.latestAccessNumber + ",移除失敗</br>";
                 }
 
                 this.messageRecordDB();//紀錄訊息
