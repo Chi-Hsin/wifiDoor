@@ -14,10 +14,18 @@ var indexData = new Vue({
             	memberName:"",
             	latestAccessNumber:"",
             	modeList:{
-            		1:'Remote',
-            		2:'RFID',
-                3:'Mix'
+            		1:'遠端',
+            		2:'刷卡',
+                3:'綜合'
             	},
+              buttonActionList:{//執行動作可能產生的結果列表
+                0:"執行動作取消",
+                1:"卡號不能為空白,執行失敗",
+                2:"修改卡號",//修改成功
+                3:"新增卡號",//新增成功
+                4:"移除卡號",//刪除成功
+                5:"查無卡號"//刪除失敗
+              },
             	message:"~~~~~",//rfid掃描紀錄顯示
               recordMessage:"",
               currentTime:"",
@@ -64,17 +72,90 @@ var indexData = new Vue({
                   time:this.currentTime
                 })
               },
+              editbuttonConfirm:function(msg,number){//修改或新增的確認詢問以及有效卡號的檢查
+                if(!confirm(msg)){
+                  alert("執行動作已取消")
+                  return 0;
+                }
+                if(this.latestAccessNumber == ""){
+                  alert("卡號不能為空白")
+                  return 1;
+                }
+                for(var index in this.obj.memberList){
+                  if(this.obj.memberList.hasOwnProperty(number)){
+                    alert("修改成功!");
+                    return 2;
+                  }
+                }
+                if(!confirm("這是一筆新卡號,確認新增嗎?")){
+                  alert("執行動作已取消")
+                  return 0;
+                }else{
+                  alert("新增成功");
+                  return 3;
+                }
+                
+              },
+              delbuttonConfirm:function(msg,number){//刪除前的確認詢問以及有效卡號的檢查
+                if(!confirm(msg)){
+                  alert("執行動作已取消")
+                  return 0;
+                }
+                if(this.latestAccessNumber == ""){
+                  alert("卡號不能為空白")
+                  return 1;
+                }
+                for(var index in this.obj.memberList){
+                  if(this.obj.memberList.hasOwnProperty(number)){
+                    alert("刪除成功!");
+                    return 4;
+                  }
+                }
+                alert("查無該卡號,無法刪除");
+                return 5;
+
+              },
               setAuthMember:function(){//更新/編輯
+                var confirmValue = this.editbuttonConfirm("確認要修改嗎?",this.latestAccessNumber);
+
+                if(confirmValue == 0 || confirmValue == 1){
+                  this.recordMessage = this.buttonActionList[confirmValue];
+                  this.messageRecordDB();
+                  return;//紀錄訊息  以及下方更新動作都不做
+                }
+                else if(confirmValue == 2){
+                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料";
+                }
+                else if(confirmValue == 3){
+                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "一筆";
+                }
+
                 var obj = {};
                 obj[this.latestAccessNumber] = this.memberName; //更新雲端資料庫的值
+                
+                this.messageRecordDB();//紀錄訊息
 
-                // console.log("要更新的卡號是",this.latestAccessNumber,"要更新的名稱是",this.memberName)
-                this.recordMessage = "更新名稱卡號";
-                this.messageRecordDB();
+
+
                 this.$set(this.obj.memberList, this.latestAccessNumber, this.memberName) //同時更新本地端的資料
                 fireRoot.child("memberList").update(obj);
               },
               delAuthMember:function(){//移除權限
+                var confirmValue = this.delbuttonConfirm("確認移除該使用者權限嗎?",this.latestAccessNumber);
+
+                if(confirmValue == 0 || confirmValue == 1){
+                  this.recordMessage = this.buttonActionList[confirmValue];
+                  this.messageRecordDB();
+                  return;//紀錄訊息  以及下方刪除動作都不做
+                }
+                else if(confirmValue == 4){
+                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + "資料成功";
+                }
+                else if(confirmValue == 5){
+                  this.recordMessage = this.buttonActionList[confirmValue] + this.latestAccessNumber + ",移除失敗";
+                }
+
+                this.messageRecordDB();//紀錄訊息
                 fireRoot.child("memberList/" + this.latestAccessNumber).remove();
                 this.$delete(this.obj.memberList,this.latestAccessNumber)
               },

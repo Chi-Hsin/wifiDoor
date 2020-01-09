@@ -1,0 +1,104 @@
+{
+  "iot" : {
+    "colder" : {
+      "closeTime" : "2019-12-31T12:59",
+      "setTime" : "2019-12-15T23:16"
+    },
+    "door" : {
+      "currentTime" : "2019-12-17 01:20",
+      "doorMode" : 3,
+      "message" : {
+        "-LwEglBI4Ooz2vBjd-vx" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "",
+          "type" : "txt"
+        },
+        "-LwEgljxn0aNiv_692N5" : {
+          "msg" : "<br>開關狀態變更為1</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgluwkCtBICMUizDT" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgoOoeUg7Zk320wSs" : {
+          "msg" : "<br>開關狀態變更為0</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgoVDOlcI8Pkj_YWC" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgozCFuLDO1i2wX62" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgpNSGUT0LfieXj7T" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgpQ51KKAXEwNRPuV" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:12",
+          "type" : "txt"
+        },
+        "-LwEgpSStHg9wUUeu4Px" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:13",
+          "type" : "txt"
+        },
+        "-LwEgpU_WWzL0e1BhQYs" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:13",
+          "type" : "txt"
+        },
+        "-LwEgpvgFB2R8O5N1LpM" : {
+          "msg" : "<br>門鎖模式變更為RFID</br>",
+          "time" : "2019-12-17 01:13",
+          "type" : "txt"
+        },
+        "-LwEh8-7q7uvNItby_lP" : {
+          "msg" : "<br>門鎖模式變更為Key</br>",
+          "time" : "2019-12-17 01:14",
+          "type" : "txt"
+        },
+        "-LwEi-DLEyXScj69Za2H" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:16",
+          "type" : "txt"
+        },
+        "-LwEi0bbDr5uVtYF0FOm" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:18",
+          "type" : "txt"
+        },
+        "-LwEi0yzZZZqgxIKgheh" : {
+          "msg" : "<br>開關狀態變更為1</br>",
+          "time" : "2019-12-17 01:18",
+          "type" : "txt"
+        },
+        "-LwEi1DVNDzcHxYhh6xh" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2019-12-17 01:18",
+          "type" : "txt"
+        },
+        "-LwEi8lR8TalOhxstKhp" : {
+          "msg" : "<br>開關狀態變更為0</br>",
+          "time" : "2019-12-17 01:18",
+          "type" : "txt"
+        }
+      },
+      "reset" : 1,
+      "resetIo" : 0,
+      "start" : 0,
+      "startIo" : 1
+    },
+    "randomNumber" : 1
+  }
+}
