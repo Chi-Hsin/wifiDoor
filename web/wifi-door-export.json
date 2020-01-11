@@ -1,0 +1,218 @@
+{
+  "iot" : {
+    "colder" : {
+      "closeTime" : "2019-12-31T12:59",
+      "setTime" : "2019-12-15T23:16"
+    },
+    "door" : {
+      "infoData" : {
+        "doorMode" : 3,
+        "latestAccessNumber" : "5518610664167",
+        "memberList" : {
+          "179966719785" : "liangNi",
+          "5518610664167" : "Marry_Lin",
+          "861431224845" : "who"
+        },
+        "reset" : 0,
+        "start" : 0
+      },
+      "message" : {
+        "-LyDBTarRa8gCgH7GFcZ" : {
+          "msg" : "<br>遠端啟動門鎖成功</br>",
+          "time" : "2020-1-10 11:58",
+          "type" : "txt"
+        },
+        "-LyK-sQutjmNCUFxbs0X" : {
+          "msg" : "<br>遠端啟動門鎖成功</br>",
+          "time" : "2020-1-11 22:21",
+          "type" : "txt"
+        },
+        "-LyK18Jm8xvG33QMNogg" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 22:35",
+          "type" : "txt"
+        },
+        "-LyK1AAJE_Ysy35j1oPy" : {
+          "msg" : "<br>門鎖模式變更為刷卡</br>",
+          "time" : "2020-1-11 22:36",
+          "type" : "txt"
+        },
+        "-LyK1Am2C_K2XJ58OqtN" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 22:36",
+          "type" : "txt"
+        },
+        "-LyK1Bc0vOUUmngPkl5_" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2020-1-11 22:36",
+          "type" : "txt"
+        },
+        "-LyK1TGEpt73pNcGqRAt" : {
+          "msg" : "<br>修改卡號861431224845資料</br>",
+          "time" : "2020-1-11 22:37",
+          "type" : "txt"
+        },
+        "-LyK1UQiT8FGLCI-RFL5" : {
+          "msg" : "<br>執行動作取消</br>",
+          "time" : "2020-1-11 22:37",
+          "type" : "txt"
+        },
+        "-LyK1WkmO2pJ8cEHbcSe" : {
+          "msg" : "<br>門鎖模式變更為刷卡</br>",
+          "time" : "2020-1-11 22:37",
+          "type" : "txt"
+        },
+        "-LyK6HHK2WckhIXfsTiu" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 22:38",
+          "type" : "txt"
+        },
+        "-LyK6R1Dweqxg7H2oY1S" : {
+          "msg" : "<br>遠端啟動門鎖成功</br>",
+          "time" : "2020-1-11 22:58",
+          "type" : "txt"
+        },
+        "-LyK6TRX5G70lKug3vqo" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2020-1-11 22:59",
+          "type" : "txt"
+        },
+        "-LyK6aIwN3A3iOf5O2eT" : {
+          "msg" : "<br>遠端啟動門鎖成功</br>",
+          "time" : "2020-1-11 22:59",
+          "type" : "txt"
+        },
+        "-LyK6bhhuBsjGTx-5cu6" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2020-1-11 22:59",
+          "type" : "txt"
+        },
+        "-LyK6eEwqW_vZaQnyg98" : {
+          "msg" : "<br>開發版已重置</br>",
+          "time" : "2020-1-11 23:0",
+          "type" : "txt"
+        },
+        "-LyK6fuFEWvhHQgV7psA" : {
+          "msg" : "<br>遠端啟動門鎖成功</br>",
+          "time" : "2020-1-11 23:0",
+          "type" : "txt"
+        },
+        "-LyK77tEpBGIqT6SaEKW" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:0",
+          "type" : "txt"
+        },
+        "-LyK7bPPhx1cxLe4mXak" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:4",
+          "type" : "text"
+        },
+        "-LyK7eQjCRy-5nZcdCwz" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:4",
+          "type" : "text"
+        },
+        "-LyK7h0F9OpiOjbExzb9" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:4",
+          "type" : "text"
+        },
+        "-LyK7jqgxNhkjq0YaXrX" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:4",
+          "type" : "text"
+        },
+        "-LyK7mqfLLb_N4wvnnzu" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:5",
+          "type" : "text"
+        },
+        "-LyK8hVOGRmMerKQSrxw" : {
+          "msg" : "<br>whoAccess success!</br>",
+          "time" : "2020-1-11 23:9",
+          "type" : "text"
+        },
+        "-LyK8k9UAlJESKr79EX3" : {
+          "msg" : "<br>whoAccess success!</br>",
+          "time" : "2020-1-11 23:9",
+          "type" : "text"
+        },
+        "-LyKB2fUglrjJnrFdtOQ" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 23:9",
+          "type" : "txt"
+        },
+        "-LyKB37NWdScbyrTQB9y" : {
+          "msg" : "<br>門鎖模式變更為刷卡</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKB3QO_VqCw-kpqAlj" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKB5c1jHRlz9rZh-aF" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKB6YQk6Ep4Za3rz5t" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKB6rd_Gy4CYT1BvSA" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKB79fRP2ylCGR3KMC" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:19",
+          "type" : "txt"
+        },
+        "-LyKBTKzjZfotKjQ_T3C" : {
+          "msg" : "<br>門鎖模式變更為刷卡</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "txt"
+        },
+        "-LyKBTZftFHHFWaal9-a" : {
+          "msg" : "<br>門鎖模式變更為遠端</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "txt"
+        },
+        "-LyKBTnXmj5_Zwj2vulF" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "txt"
+        },
+        "-LyKBU3vI-AEl9Qr5FJy" : {
+          "msg" : "<br>門鎖模式變更為刷卡</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "txt"
+        },
+        "-LyKBUImAcjlWeYtnuxZ" : {
+          "msg" : "<br>門鎖模式變更為綜合</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "txt"
+        },
+        "-LyKBZBTZWw49N3Yf5_7" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "text"
+        },
+        "-LyKBbTtyIkMF804fGuS" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "text"
+        },
+        "-LyKBeAHqtM0WBJi6Nx0" : {
+          "msg" : "<br>Marry_LinAccess success!</br>",
+          "time" : "2020-1-11 23:21",
+          "type" : "text"
+        }
+      }
+    }
+  }
+}
