@@ -50,7 +50,7 @@
 	                  </tr>
 	                </thead>
 	                <tbody>
-	                <tr v-for="(v,k) in obj.memberList" @click="getDataTest">
+	                <tr v-for="(v,k) in obj.infoData.memberList" @click="getDataTest">
 	                   <td :data-number="k" :data-name="v">{{k}}</td>
 	                   <td :data-number="k" :data-name="v">{{v}}</td>
 	                </tr>

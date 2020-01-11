@@ -10,7 +10,10 @@ var indexData = new Vue({
             		background: '#fff',
             		height:'300px',
             	},
-            	obj:{},
+            	obj:{
+                infoData:{},
+                message:{}
+              },
             	memberName:"",
             	latestAccessNumber:"",
             	modeList:{
@@ -38,31 +41,31 @@ var indexData = new Vue({
             	startEvent:function(){
             		// this.obj.start = 1 - this.obj.start;
             		// fireRoot.update({'start':this.obj.start})
-                fireRoot.update({'start':1})
+                fireRoot.child("infoData").update({'start':1})
                 this.recordMessage = "<br>" + this.buttonActionList[6] + "</br>";
                 this.messageRecordDB();
             	
             	},
             	resetEvent:function(){
-            		this.obj.reset = 1;
-            		fireRoot.update({'reset':this.obj.reset})
+            		this.obj.infoData.reset = 1;
+            		fireRoot.child("infoData").update({'reset':this.obj.infoData.reset})
             		fireRoot.child("message").push({
             			type:'txt',
             			msg:"<br>開發版已重置</br>",
                               time:this.currentTime
             		})
-            		console.log(this.obj.reset)
+            		console.log(this.obj.infoData.reset)
             	},
             	doorModeEvent:function(e){
-            		this.obj.doorMode = Number(e.target.value);
-                if(this.obj.doorMode == 2 || this.obj.doorMode == 3){
+            		this.obj.infoData.doorMode = Number(e.target.value);
+                if(this.obj.infoData.doorMode == 2){
                   this.remoteOn = false;
                 }else{
                   this.remoteOn = true;
                 }
-                this.recordMessage = "<br>門鎖模式變更為"+this.modeList[this.obj.doorMode] + "</br>";
+                this.recordMessage = "<br>門鎖模式變更為"+this.modeList[this.obj.infoData.doorMode] + "</br>";
             		this.messageRecordDB();
-            		fireRoot.update({'doorMode':this.obj.doorMode})
+            		fireRoot.child("infoData").update({'doorMode':this.obj.infoData.doorMode})
             	},
               messageRecordDB:function(){
                 fireRoot.child("message").push({
@@ -80,8 +83,8 @@ var indexData = new Vue({
                   alert("卡號不能為空白")
                   return 1;
                 }
-                for(var index in this.obj.memberList){
-                  if(this.obj.memberList.hasOwnProperty(number)){
+                for(var index in this.obj.infoData.memberList){
+                  if(this.obj.infoData.memberList.hasOwnProperty(number)){
                     alert("修改成功!");
                     return 2;
                   }
@@ -104,8 +107,8 @@ var indexData = new Vue({
                   alert("卡號不能為空白")
                   return 1;
                 }
-                for(var index in this.obj.memberList){
-                  if(this.obj.memberList.hasOwnProperty(number)){
+                for(var index in this.obj.infoData.memberList){
+                  if(this.obj.infoData.memberList.hasOwnProperty(number)){
                     alert("刪除成功!");
                     return 4;
                   }
@@ -136,8 +139,8 @@ var indexData = new Vue({
 
 
 
-                this.$set(this.obj.memberList, this.latestAccessNumber, this.memberName) //同時更新本地端的資料
-                fireRoot.child("memberList").update(obj);
+                this.$set(this.obj.infoData.memberList, this.latestAccessNumber, this.memberName) //同時更新本地端的資料
+                fireRoot.child("infoData/memberList").update(obj);
               },
               delAuthMember:function(){//移除權限
                 var confirmValue = this.delbuttonConfirm("確認移除該使用者權限嗎?",this.latestAccessNumber);
@@ -155,8 +158,8 @@ var indexData = new Vue({
                 }
 
                 this.messageRecordDB();//紀錄訊息
-                fireRoot.child("memberList/" + this.latestAccessNumber).remove();
-                this.$delete(this.obj.memberList,this.latestAccessNumber)
+                fireRoot.child("infoData/memberList/" + this.latestAccessNumber).remove();
+                this.$delete(this.obj.infoData.memberList,this.latestAccessNumber)
               },
               getDataTest:function(e){
                 var name = e.target.getAttribute("data-name")
@@ -186,7 +189,7 @@ var indexData = new Vue({
             },
             computed:{
                   doorMode:function(){
-                       return  this.obj.doorMode
+                       return  this.obj.infoData.doorMode
                   },
                   history:function(){//最新的一筆紀錄呈現在最上頭
                        var aaa={};
@@ -238,7 +241,7 @@ var indexData = new Vue({
 					}
 				})
 
-            fireRoot.child("latestAccessNumber").on("value",function(s){
+            fireRoot.child("infoData/latestAccessNumber").on("value",function(s){
                console.log("紀錄上一次登入變動",s.val())
                indexData.latestAccessNumber = s.val()
             })
