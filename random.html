@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IOT物聯網應用技術</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+
+
+</style>
+<body>
+	<div><a href="index.html">回首頁</a></div>
+	<div id="randomData">
+		<h1>亂數倒數頁面</h1>
+		<button @click="randomMake">產生亂數</button>
+		<h1 style="color:red">{{number}}</h1>
+	</div>
+</body>
+<script type="text/javascript">
+	var randomData = new Vue({
+            el: '#randomData',
+            data: {
+            	number:""
+            },
+            methods:{
+            	randomMake:function(){
+            		var number = Math.floor(Math.random() * 9);
+            		// console.log(number)
+            		this.number = number;
+            		fireRoot.child("randomNumber").update({number:this.number})
+            	}
+            },
+            mounted:function(){
+
+				var config = {
+				  apiKey: "AIzaSyCZwmZKUPTIdTntjUvnvPqj5qEVy1pZG3Q",
+				  authDomain: "relaycontrol-fc8da.firebaseapp.com",
+				  databaseURL: "https://wifi-door.firebaseio.com/",
+				  projectId: "wifi-door",
+				  storageBucket: "",
+				  messagingSenderId: "690750323149"};
+				
+				firebase.initializeApp(config);// Initialize Firebase
+				fireRoot = firebase.database().ref("/iot");
+
+            },
+        })
+</script>
+</html>

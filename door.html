@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>門禁鎖控制</title>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<body>
+<div class="container-fluid" id="doorLock" >
+	  <div>
+	  	<a href="javascript:;" @click="rfidrecordShow">監控介面</a>
+	  	<a href="javascript:;" @click="settingShow">設置頁面</a>
+	  </div>
+      <div class="row" v-show="rfidrecordVisible">
+  		<!-- Rfid掃描紀錄顯示 -->
+  	    <div class="col-sm-12" id="rfidConsole" :style="rfidConsoleStyle" v-html="message" ></div>
+  	    <div class="col-sm-12">
+          <!-- 目前門鎖模式為{{modeList[doorMode]}} -->
+          <p>切換門鎖模式
+                <select @change="doorModeEvent" v-model="doorMode">
+                  <option v-for="(v,k) in modeList" :value ="k">{{v}}</option>
+                </select>
+          </p>
+          <button type="button" class="startButton" @click="startEvent" v-show="remoteOn">啟動門鎖</button>
+          <button type="button" class="resetButton" @click="resetEvent">重置</button>
+          <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
+        </div>
+	  </div>
+  	    <!-- 設置頁面 -->
+  	   <div class="row" v-show="settingVisible">
+  	   	    <div class="col-sm-12" :style="memberListStyle" >
+        	<p>寫入測試測試</p>
+	          <div class="modal-body">
+	            <table class="table table-hover">
+	                <thead>
+	                  <tr>
+	                    <th>卡號</th>
+	                    <th>名稱</th>
+	                  </tr>
+	                </thead>
+	                <tbody>
+	                <tr v-for="(v,k) in obj.infoData.memberList" @click="getDataTest">
+	                   <td :data-number="k" :data-name="v">{{k}}</td>
+	                   <td :data-number="k" :data-name="v">{{v}}</td>
+	                </tr>
+	                </tbody>
+	            </table>
+	           </div>
+
+
+	          <input type="text" name="latestAccessNumber" placeholder="最新登入卡號" v-model="latestAccessNumber">
+	          <input type="text" name="memberName" placeholder="輸入名稱" v-model="memberName">
+	          <button type="button" @click="setAuthMember">編輯修改</button>
+	          <button type="button" @click="delAuthMember">移除權限</button>
+	          <button type="button" data-toggle="modal" data-target="#myModal">歷史紀錄</button>
+        	</div>
+  	   </div> 
+
+        
+          
+          
+        
+
+      
+
+
+
+
+
+  <!-- Modal Begin-->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title">歷史紀錄</h1>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>時間</th>
+                    <th>訊息</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(v,k) in history">
+                   <td>{{v.time}}</td>
+                   <td v-html="v.msg"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+</div>      
+
+</body>
+<script>
+  window.onload = function(){
+    var s = document.createElement("script");//引入設置相關的JS文件
+    var random_number = Math.floor((Math.random() * 10000) + 1);
+    s.src = "js/door.js?number="+random_number;
+    document.body.appendChild(s);
+  }
+</script>
+<!-- <script src="js/door.js"></script> -->
+</html>
