@@ -11,7 +11,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+<script>
+      window.addEventListener('beforeinstallprompt', function(e) {
+      // beforeinstallprompt Event fired
+      // e.userChoice will return a Promise.
+      e.userChoice.then(function(choiceResult) {
+        console.log(choiceResult.outcome);
+        if(choiceResult.outcome == 'dismissed') {
+          console.log('User cancelled home screen install');
+        }
+        else {
+          console.log('User added to home screen');
+        }
+      });
+    });
+</script>
  <link rel="apple-touch-icon" href="AAA.jpg" sizes="48x48">
     <link rel="apple-touch-icon" href="AAA.jpg" sizes="72x72">
     <link rel="apple-touch-icon" href="AAA.jpg" sizes="96x96">
